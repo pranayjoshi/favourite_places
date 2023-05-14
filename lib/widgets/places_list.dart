@@ -1,4 +1,5 @@
 import 'package:favourite_places/models/place.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
@@ -10,6 +11,12 @@ class PlacesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    if (places.isEmpty) {
+      return const Center(child: const Text("No places yet!"));
+    }
+
+    return ListView.builder(itemBuilder: (ctx, index) => ListTile(
+      title: Text(places[index].title),
+    ), itemCount: places.length,);
   }
 }
