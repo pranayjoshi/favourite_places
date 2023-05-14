@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
-class PlacesListWidget extends StatelessWidget {
-  const PlacesListWidget({super.key});
+class PlacesScreen extends StatelessWidget {
+  const PlacesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
