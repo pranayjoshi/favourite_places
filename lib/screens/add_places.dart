@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
@@ -12,6 +13,17 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Add new Place"),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            TextField(decoration: InputDecoration(label: Text("Title")),)
+          ],
+        ),
+      ),
+    );
   }
 }
