@@ -28,7 +28,9 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            TextField(decoration: InputDecoration(label: Text("Title")),)
+            TextField(decoration: InputDecoration(label: Text("Title")), controller: _titleController,),
+            SizedBox(height: 16,),
+            ElevatedButton.icon(onPressed: (){}, label: Text("Add Place"), icon: Icon(Icons.add),)
           ],
         ),
       ),
