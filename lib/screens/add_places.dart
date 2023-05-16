@@ -1,4 +1,5 @@
 import 'package:favourite_places/providers/user_places.dart';
+import 'package:favourite_places/widgets/image_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -47,6 +48,10 @@ class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
               controller: _titleController,
               style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
             ),
+            SizedBox(
+              height: 10,
+            ),
+            ImageInput(),
             SizedBox(
               height: 16,
             ),
