@@ -14,7 +14,7 @@ class AddPlaceScreen extends ConsumerStatefulWidget {
 class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
   final _titleController = TextEditingController();
 
-  void savePlace(){
+  void _savePlace(){
     final enteredText = _titleController.text;
 
     if (enteredText.isEmpty){
@@ -51,7 +51,7 @@ class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
               height: 16,
             ),
             ElevatedButton.icon(
-              onPressed: () {},
+              onPressed: _savePlace,
               label: Text("Add Place"),
               icon: Icon(Icons.add),
             )
