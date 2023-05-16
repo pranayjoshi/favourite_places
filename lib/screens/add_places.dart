@@ -31,7 +31,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
             TextField(
               decoration: InputDecoration(label: Text("Title")),
               controller: _titleController,
-              style: TextStyle(color: Theme.of(context).colorScheme.background),
+              style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
             ),
             SizedBox(
               height: 16,
