@@ -15,6 +15,7 @@ class _ImageInputState extends State<ImageInput> {
     return Container(
       height: 250,
       width: double.infinity,
+      alignment: Alignment.center,
       child: TextButton.icon(
           onPressed: () {},
           icon: Icon(Icons.camera),
