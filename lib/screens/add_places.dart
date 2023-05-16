@@ -6,7 +6,7 @@ class AddPlaceScreen extends StatefulWidget {
   const AddPlaceScreen({super.key});
 
   @override
-  State<AddPlaceScreen> createState() => throw UnimplementedError();
+  State<AddPlaceScreen> createState() => _AddPlaceScreenState();
 }
 
 class _AddPlaceScreenState extends State<AddPlaceScreen> {
