@@ -3,8 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$Pick your favourite place image.</string>
 	<key>NSCameraUsageDescription</key>
+	<string>$Pick your favourite place image.</string>
 	<key>NSMicrophoneUsageDescription</key>
+	<string>$Pick your favourite place image.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
