@@ -29,6 +29,7 @@ class PlacesList extends StatelessWidget {
                 color: Theme.of(context).colorScheme.onBackground,
               ),
         ),
+        leading: CircleAvatar(radius: 26, backgroundImage: FileImage(places[index].image),),
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute(
               builder: (ctx) => PlaceDetailScreen(place: places[index])));
