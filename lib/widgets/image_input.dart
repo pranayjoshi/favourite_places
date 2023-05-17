@@ -22,7 +22,10 @@ class _ImageInputState extends State<ImageInput> {
       return;
     }
 
-    _selectedImage = File(pickImage.path);
+    setState(() {
+      _selectedImage = File(pickImage.path);
+    });
+    
 
   }
   @override
@@ -33,7 +36,7 @@ class _ImageInputState extends State<ImageInput> {
           label: Text("Take Picture"));
     
     if (_selectedImage != null){
-      content = Image.file(_selectedImage!, fit: BoxFit.cover,);
+      content = Image.file(_selectedImage!, fit: BoxFit.cover, width: double.infinity, height: double.infinity,);
     }
 
     return Container(
