@@ -12,6 +12,15 @@ class LocationInput extends StatefulWidget {
 class _LocationInputState extends State<LocationInput> {
   @override
   Widget build(BuildContext context) {
-    return Column();
+    return Column(
+      children: [
+        Container(),
+        Row(
+          children: [
+            TextButton.icon(onPressed: onPressed, icon: icon, label: label)
+          ],
+        )
+      ],
+    );
   }
 }
