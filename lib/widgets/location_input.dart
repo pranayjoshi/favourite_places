@@ -17,7 +17,14 @@ class _LocationInputState extends State<LocationInput> {
         Container(),
         Row(
           children: [
-            TextButton.icon(onPressed: onPressed, icon: icon, label: label)
+            TextButton.icon(
+                onPressed: () {},
+                icon: Icon(Icons.location_on),
+                label: Text("Get current location.")),
+            TextButton.icon(
+                onPressed: () {},
+                icon: Icon(Icons.map),
+                label: Text("Select on map."))
           ],
         )
       ],
