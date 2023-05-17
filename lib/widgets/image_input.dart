@@ -22,20 +22,26 @@ class _ImageInputState extends State<ImageInput> {
       return;
     }
 
-    _selectedImage = pickImage;
+    _selectedImage = File(pickImage.path);
 
   }
   @override
   Widget build(BuildContext context) {
+    Widget content = TextButton.icon(
+          onPressed: () {_takePicture();},
+          icon: Icon(Icons.camera),
+          label: Text("Take Picture"));
+    
+    if (_selectedImage != null){
+      content = Image.file(_selectedImage!, fit: BoxFit.cover,);
+    }
+
     return Container(
       decoration: BoxDecoration(border: Border.all(width: 1, color: Theme.of(context).colorScheme.primary.withOpacity(0.2))),
       height: 250,
       width: double.infinity,
       alignment: Alignment.center,
-      child: TextButton.icon(
-          onPressed: () {_takePicture();},
-          icon: Icon(Icons.camera),
-          label: Text("Take Picture")),
+      child: content
     );
   }
 }
