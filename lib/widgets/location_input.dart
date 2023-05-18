@@ -14,7 +14,14 @@ class _LocationInputState extends State<LocationInput> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(),
+        Container(
+          height: 170,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            border: Border.all(
+                width: 1,
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.2))),
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
