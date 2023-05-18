@@ -18,9 +18,18 @@ class _LocationInputState extends State<LocationInput> {
           height: 170,
           width: double.infinity,
           decoration: BoxDecoration(
-            border: Border.all(
-                width: 1,
-                color: Theme.of(context).colorScheme.primary.withOpacity(0.2))),
+              border: Border.all(
+                  width: 1,
+                  color:
+                      Theme.of(context).colorScheme.primary.withOpacity(0.2))),
+          child: Text(
+            "No location Choosen",
+            textAlign: TextAlign.center,
+            style: Theme.of(context)
+                .textTheme
+                .bodyLarge!
+                .copyWith(color: Theme.of(context).colorScheme.onBackground),
+          ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
