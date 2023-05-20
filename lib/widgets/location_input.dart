@@ -16,6 +16,7 @@ class _LocationInputState extends State<LocationInput> {
       children: [
         Container(
           height: 170,
+          alignment: Alignment.center,
           width: double.infinity,
           decoration: BoxDecoration(
               border: Border.all(
