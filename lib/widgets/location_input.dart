@@ -79,7 +79,7 @@ class _LocationInputState extends State<LocationInput> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             TextButton.icon(
-                onPressed: () {},
+                onPressed: getCurrentLocation,
                 icon: Icon(Icons.location_on),
                 label: Text("Get current location.")),
             TextButton.icon(
