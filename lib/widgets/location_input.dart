@@ -12,6 +12,9 @@ class LocationInput extends StatefulWidget {
 
 class _LocationInputState extends State<LocationInput> {
 
+  Location? _pickedLocation;
+  var _isgettingLocation = false;
+
   void getCurrentLocation() async{
     Location location = Location();
   
@@ -35,7 +38,15 @@ class _LocationInputState extends State<LocationInput> {
         return;
       }
     }
+
+    setState(() {
+      _isgettingLocation = true;
+    });
     _locationData = await location.getLocation();
+
+    setState(() {
+      _isgettingLocation = false;
+    });
   }
 
   
