@@ -11,13 +11,11 @@ class LocationInput extends StatefulWidget {
 }
 
 class _LocationInputState extends State<LocationInput> {
-
   Location? _pickedLocation;
   var _isgettingLocation = false;
 
-  void getCurrentLocation() async{
+  void getCurrentLocation() async {
     Location location = Location();
-  
 
     late bool _serviceEnabled;
     late PermissionStatus _permissionGranted;
@@ -49,36 +47,34 @@ class _LocationInputState extends State<LocationInput> {
     });
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
-
     Widget previewContent = Text(
-            "No location Choosen",
-            textAlign: TextAlign.center,
-            style: Theme.of(context)
-                .textTheme
-                .bodyLarge!
-                .copyWith(color: Theme.of(context).colorScheme.onBackground),
-          );
-    
-    if (_isgettingLocation){
+      "No location Choosen",
+      textAlign: TextAlign.center,
+      style: Theme.of(context)
+          .textTheme
+          .bodyLarge!
+          .copyWith(color: Theme.of(context).colorScheme.onBackground),
+    );
+
+    if (_isgettingLocation) {
       previewContent = CircularProgressIndicator();
     }
     return Column(
       children: [
         Container(
-          height: 170,
-          alignment: Alignment.center,
-          width: double.infinity,
-          decoration: BoxDecoration(
-              border: Border.all(
-                  width: 1,
-                  color:
-                      Theme.of(context).colorScheme.primary.withOpacity(0.2))),
-          child: previewContent
-        ),
+            height: 170,
+            alignment: Alignment.center,
+            width: double.infinity,
+            decoration: BoxDecoration(
+                border: Border.all(
+                    width: 1,
+                    color: Theme.of(context)
+                        .colorScheme
+                        .primary
+                        .withOpacity(0.2))),
+            child: previewContent),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
