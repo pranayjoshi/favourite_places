@@ -53,6 +53,19 @@ class _LocationInputState extends State<LocationInput> {
 
   @override
   Widget build(BuildContext context) {
+
+    Widget previewContent = Text(
+            "No location Choosen",
+            textAlign: TextAlign.center,
+            style: Theme.of(context)
+                .textTheme
+                .bodyLarge!
+                .copyWith(color: Theme.of(context).colorScheme.onBackground),
+          );
+    
+    if (_isgettingLocation){
+      previewContent = CircularProgressIndicator();
+    }
     return Column(
       children: [
         Container(
@@ -64,14 +77,7 @@ class _LocationInputState extends State<LocationInput> {
                   width: 1,
                   color:
                       Theme.of(context).colorScheme.primary.withOpacity(0.2))),
-          child: Text(
-            "No location Choosen",
-            textAlign: TextAlign.center,
-            style: Theme.of(context)
-                .textTheme
-                .bodyLarge!
-                .copyWith(color: Theme.of(context).colorScheme.onBackground),
-          ),
+          child: previewContent
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
