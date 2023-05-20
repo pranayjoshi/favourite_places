@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:location/location.dart';
 
 class LocationInput extends StatefulWidget {
   const LocationInput({super.key});
@@ -10,6 +11,15 @@ class LocationInput extends StatefulWidget {
 }
 
 class _LocationInputState extends State<LocationInput> {
+
+  void getCurrentLocation(){
+    Location location = Location();
+  }
+
+  late bool serviceEnabled;
+  late PermissionStatus permissionGranted;
+  late LocationData locationData;
+
   @override
   Widget build(BuildContext context) {
     return Column(
