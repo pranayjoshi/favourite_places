@@ -40,6 +40,7 @@ dependencies:
   flutter_riverpod: ^2.3.6
   image_picker: ^0.8.7+5
   location: ^4.4.0
+  sqflite: ^2.2.8+4
 
 dev_dependencies:
   flutter_test:
