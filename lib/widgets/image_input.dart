@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ImageInput extends StatefulWidget {
   const ImageInput({super.key, required this.onPickImage});
@@ -10,7 +9,9 @@ class ImageInput extends StatefulWidget {
   final void Function(File image) onPickImage;
 
   @override
-  State<ImageInput> createState() => _ImageInputState();
+  State<ImageInput> createState() {
+    return _ImageInputState();
+  }
 }
 
 class _ImageInputState extends State<ImageInput> {
@@ -18,15 +19,15 @@ class _ImageInputState extends State<ImageInput> {
 
   void _takePicture() async {
     final imagePicker = ImagePicker();
-    final pickImage =
+    final pickedImage =
         await imagePicker.pickImage(source: ImageSource.camera, maxWidth: 600);
 
-    if (pickImage == null) {
+    if (pickedImage == null) {
       return;
     }
 
     setState(() {
-      _selectedImage = File(pickImage.path);
+      _selectedImage = File(pickedImage.path);
     });
 
     widget.onPickImage(_selectedImage!);
@@ -35,31 +36,34 @@ class _ImageInputState extends State<ImageInput> {
   @override
   Widget build(BuildContext context) {
     Widget content = TextButton.icon(
-        onPressed: () {
-          _takePicture();
-        },
-        icon: Icon(Icons.camera),
-        label: Text("Take Picture"));
+      icon: const Icon(Icons.camera),
+      label: const Text('Take Picture'),
+      onPressed: _takePicture,
+    );
 
     if (_selectedImage != null) {
       content = GestureDetector(
-        onTap: () => _takePicture(),
+        onTap: _takePicture,
         child: Image.file(
           _selectedImage!,
           fit: BoxFit.cover,
           width: double.infinity,
           height: double.infinity,
-      ));
+        ),
+      );
     }
 
     return Container(
-        decoration: BoxDecoration(
-            border: Border.all(
-                width: 1,
-                color: Theme.of(context).colorScheme.primary.withOpacity(0.2))),
-        height: 250,
-        width: double.infinity,
-        alignment: Alignment.center,
-        child: content);
+      decoration: BoxDecoration(
+        border: Border.all(
+          width: 1,
+          color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+        ),
+      ),
+      height: 250,
+      width: double.infinity,
+      alignment: Alignment.center,
+      child: content,
+    );
   }
 }
