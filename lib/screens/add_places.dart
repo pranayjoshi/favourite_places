@@ -1,34 +1,41 @@
-import 'package:favourite_places/providers/user_places.dart';
-import 'package:favourite_places/widgets/image_input.dart';
-import 'package:favourite_places/widgets/location_input.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:io';
+
+import '../models/place.dart';
+import '../widgets/location_input.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/material.dart';
+
+import '../widgets/image_input.dart';
+import '../providers/user_places.dart';
 
 class AddPlaceScreen extends ConsumerStatefulWidget {
   const AddPlaceScreen({super.key});
 
   @override
-  ConsumerState<AddPlaceScreen> createState() => _AddPlaceScreenState();
+  ConsumerState<AddPlaceScreen> createState() {
+    return _AddPlaceScreenState();
+  }
 }
 
 class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
   final _titleController = TextEditingController();
-
   File? _selectedImage;
+  PlaceLocation? _selectedLocation;
 
-  void _savePlace(){
-    final enteredText = _titleController.text;
+  void _savePlace() {
+    final enteredTitle = _titleController.text;
 
-    if (enteredText.isEmpty || _selectedImage == null){
+    if (enteredTitle.isEmpty ||
+        _selectedImage == null ||
+        _selectedLocation == null) {
       return;
     }
-    ref.read(UserPlacesProvider.notifier).addPlace(enteredText, _selectedImage!);
+
+    ref
+        .read(userPlacesProvider.notifier)
+        .addPlace(enteredTitle, _selectedImage!, _selectedLocation!);
 
     Navigator.of(context).pop();
-
   }
 
   @override
@@ -41,31 +48,37 @@ class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Add new Place"),
+        title: const Text('Add new Place'),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
         child: Column(
           children: [
             TextField(
-              decoration: InputDecoration(label: Text("Title")),
+              decoration: const InputDecoration(labelText: 'Title'),
               controller: _titleController,
-              style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onBackground,
+              ),
             ),
-            SizedBox(
-              height: 10,
+            const SizedBox(height: 10),
+            ImageInput(
+              onPickImage: (image) {
+                _selectedImage = image;
+              },
             ),
-            ImageInput(onPickImage: (image) => _selectedImage=image,),
-            SizedBox(height: 10,),
-            LocationInput(),
-            SizedBox(
-              height: 16,
+            const SizedBox(height: 10),
+            LocationInput(
+              onSelectLocation: (location) {
+                _selectedLocation = location;
+              },
             ),
+            const SizedBox(height: 16),
             ElevatedButton.icon(
               onPressed: _savePlace,
-              label: Text("Add Place"),
-              icon: Icon(Icons.add),
-            )
+              icon: const Icon(Icons.add),
+              label: const Text('Add Place'),
+            ),
           ],
         ),
       ),
