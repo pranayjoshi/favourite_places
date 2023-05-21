@@ -1,30 +1,59 @@
-import 'package:favourite_places/providers/user_places.dart';
-import 'package:favourite_places/screens/add_places.dart';
-import 'package:favourite_places/widgets/places_list.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class PlacesScreen extends ConsumerWidget {
+import './add_places.dart';
+import '../widgets/places_list.dart';
+import '../providers/user_places.dart';
+
+class PlacesScreen extends ConsumerStatefulWidget {
   const PlacesScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<PlacesScreen> createState() {
+    return _PlacesScreenState();
+  }
+}
 
-    final userPlaces = ref.watch(UserPlacesProvider);
+class _PlacesScreenState extends ConsumerState<PlacesScreen> {
+  late Future<void> _placesFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _placesFuture = ref.read(userPlacesProvider.notifier).loadPlaces();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final userPlaces = ref.watch(userPlacesProvider);
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Your Places"),
+        title: const Text('Your Places'),
         actions: [
-          IconButton(onPressed: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const AddPlaceScreen()));
-          }, icon: Icon(Icons.add))
+          IconButton(
+            icon: const Icon(Icons.add),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (ctx) => const AddPlaceScreen(),
+                ),
+              );
+            },
+          ),
         ],
-      
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: PlacesList(places: userPlaces),
+        child: FutureBuilder(
+          future: _placesFuture,
+          builder: (context, snapshot) =>
+              snapshot.connectionState == ConnectionState.waiting
+                  ? const Center(child: CircularProgressIndicator())
+                  : PlacesList(
+                      places: userPlaces,
+                    ),
+        ),
       ),
     );
   }
