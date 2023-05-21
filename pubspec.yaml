@@ -41,6 +41,7 @@ dependencies:
   image_picker: ^0.8.7+5
   location: ^4.4.0
   sqflite: ^2.2.8+4
+  google_maps_flutter: ^2.2.6
 
 dev_dependencies:
   flutter_test:
